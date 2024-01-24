@@ -107,4 +107,86 @@ describe("LinkedList", () => {
     linkedList.clear();
     assert.strictEqual(linkedList.size, 0);
   });
+
+  it('não deve remover se a posição for inválida', () => {
+    linkedList.add('elemento1');
+    const removedElement = linkedList.removeFrom(2);
+    assert.strictEqual(removedElement, false);
+    assert.strictEqual(linkedList.size, 1);
+  });
+
+  it('deve remover o primeiro elemento se a posição for 0', () => {
+    linkedList.add('elemento1');
+    linkedList.add('elemento2');
+    const removedElement = linkedList.removeFrom(0);
+    assert.strictEqual(removedElement, 'elemento1');
+    assert.strictEqual(linkedList.size, 1);
+    assert.strictEqual(linkedList.getFirst().data, 'elemento2');
+  });
+
+  it('deve remover o elemento da posição especificada', () => {
+    linkedList.add('elemento1');
+    linkedList.add('elemento2');
+    const removedElement = linkedList.removeFrom(1);
+    assert.strictEqual(removedElement, 'elemento2');
+    assert.strictEqual(linkedList.size, 1);
+    assert.strictEqual(linkedList.getFirst().data, 'elemento1');
+  });
+
+  it('não deve inserir se a posição for inválida', () => {
+    linkedList.add('elemento1');
+    const result = linkedList.insertAt('elemento2', 2);
+    assert.strictEqual(result, false);
+    assert.strictEqual(linkedList.size, 1);
+  });
+
+  it('deve inserir no início se a posição for 0', () => {
+    linkedList.add('elemento1');
+    linkedList.insertAt('elemento2', 0);
+    assert.strictEqual(linkedList.size, 2);
+    assert.strictEqual(linkedList.getFirst().data, 'elemento2');
+  });
+
+  it('deve inserir na posição especificada', () => {
+    linkedList.add('elemento1');
+    linkedList.insertAt('elemento2', 1);
+    assert.strictEqual(linkedList.size, 2);
+    assert.strictEqual(linkedList.getLast().data, 'elemento2');
+  });
+
+  it('deve remover o primeiro elemento da lista', () => {
+    linkedList.add('elemento1');
+    linkedList.add('elemento2');
+    const removedElement = linkedList.removeElement('elemento1');
+    assert.strictEqual(removedElement, 'elemento1');
+    assert.strictEqual(linkedList.getFirst().data, 'elemento2');
+    assert.strictEqual(linkedList.size, 1);
+  });
+
+  it('deve inserir um elemento na posição 0', () => {
+    linkedList.add('elemento1');
+    linkedList.insertAt('elemento0', 0);
+    assert.strictEqual(linkedList.getFirst().data, 'elemento0');
+    assert.strictEqual(linkedList.size, 2);
+  });
+
+  it('deve retornar -1 ao tentar remover um elemento inexistente', () => {
+    linkedList.add('elemento1');
+    const removedElement = linkedList.removeElement('elemento3');
+    assert.strictEqual(removedElement, -1);
+    assert.strictEqual(linkedList.size, 1);
+  });
+  it('deve retornar -1 ao tentar remover um elemento inexistente', () => {
+    linkedList.add('elemento1');
+    const removedElement = linkedList.removeElement('elementoInexistente');
+    assert.strictEqual(removedElement, -1);
+  });
+  
+  it('deve retornar -1 para um elemento inexistente na lista', () => {
+    linkedList.add('elemento1');
+    linkedList.add('elemento2');
+  
+    const index = linkedList.indexOf('elementoInexistente');
+    assert.strictEqual(index, -1);
+  });
 });
