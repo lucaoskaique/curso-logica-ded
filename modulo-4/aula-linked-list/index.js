@@ -98,22 +98,26 @@ class LinkedList {
 
     // se a posição for 0, remove o primeiro elemento da lista.
     // o novo primeiro elemento passa a ser o próximo elemento.
-
     if (location == 0) {
+      // o elemento removido é o primeiro da lista, então a cabeça (head) passa a ser o próximo elemento.
       this.head = current.next;
-    }else {
-      // se a posição for diferente de 0, encontra a posição correta para remover.
-      // anda pela lista até chegar na posição desejada.
-      // 'previous' guarda o nó anterior e 'current' o nó atual.
-      while (index++ < location) {
-        previous = current;
-        current = current.next;
-      }
-
-      // remove o elemento da posição encontrada.
-      // o nó anterior passa a apontar para o próximo nó.
-      previous.next = current.next;
+      // diminui o tamanho da lista em 1, pois um elemento foi removido.
+      this.size--;
+      // retorna o elemento removido.
+      return current.data; // Retorna o dado e encerra a função aqui
     }
+
+    // se a posição for diferente de 0, encontra a posição correta para remover.
+    // anda pela lista até chegar na posição desejada.
+    // 'previous' guarda o nó anterior e 'current' o nó atual.
+    while (index++ < location) {
+      previous = current;
+      current = current.next;
+    }
+
+    // remove o elemento da posição encontrada.
+    // o nó anterior passa a apontar para o próximo nó.
+    previous.next = current.next;
 
     // diminui o tamanho da lista em 1, pois um elemento foi removido.
     this.size--;
