@@ -1,13 +1,13 @@
 import assert from "node:assert";
 import { describe, it, beforeEach} from "node:test";
-import Tree from "./index.js";
+import BinaryTree from "./index.js";
 
 // Teste para a classe Tree
 describe('Tree', () => {
   let tree;
 
   beforeEach(() => {
-    tree = new Tree();
+    tree = new BinaryTree();
     tree.add(10);
     tree.add(5);
     tree.add(15);
