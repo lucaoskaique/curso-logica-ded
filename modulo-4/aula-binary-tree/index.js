@@ -11,7 +11,7 @@ class Node{
 }
 
 // Define a classe Tree, que representa a árvore binária
-class Tree{
+class BinaryTree{
   // O construtor é chamado quando criamos uma nova árvore
   constructor(){
     // A árvore tem uma raiz, que inicialmente é nula
@@ -141,7 +141,7 @@ class Tree{
   }
 }
 
-const tree = new Tree();
+const tree = new BinaryTree();
 tree.add(10);
 tree.add(5);
 tree.add(15);
@@ -155,4 +155,4 @@ tree.remove(10);
 tree.print();
 
 
-export default Tree;
+export default BinaryTree;
