@@ -18,15 +18,20 @@ class MinHeap {
     let currentIndex = this.heap.length - 1;
 
     // Sobe o novo elemento na árvore até restaurar a propriedade heap
+    // Enquanto não chegamos no topo da árvore (porque o topo é especial e não tem pai)
+    // E o pai é maior que o filho (nós queremos que o menor número esteja no topo)
     while (
       currentIndex > 1 &&
       this.heap[Math.floor(currentIndex / 2)] > this.heap[currentIndex]
     ) {
+      // Imagina que você tem uma mochila (novo elemento) e seu pai tem uma mochila (elemento pai).
+      // Se a mochila do seu pai for mais pesada que a sua, vocês trocam de mochilas.
       // Troca o novo elemento com seu pai se o pai é maior
       [this.heap[Math.floor(currentIndex / 2)], this.heap[currentIndex]] = [
         this.heap[currentIndex],
         this.heap[Math.floor(currentIndex / 2)],
       ];
+      // Agora, você sobe para o lugar onde seu pai estava, para ver se sua mochila é mais leve que a do avô também.
       // Move o índice para o nó pai para continuar o processo
       currentIndex = Math.floor(currentIndex / 2);
     }
@@ -71,7 +76,6 @@ class MinHeap {
   }
 }
 
-
 // Cria uma nova instância da MinHeap
 let minHeap = new MinHeap();
 // Define um array de números
@@ -92,4 +96,4 @@ for (let i = 0; i < k; i++) {
 console.log(result); // Saída: [2, 3, 4]
 // Imprime o heap após a remoção dos elementos mínimos
 console.log("Heap após remover o mínimo:");
-minHeap.print(); 
+minHeap.print();
