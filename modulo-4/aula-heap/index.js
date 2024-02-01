@@ -9,6 +9,7 @@ class MinHeap {
     // O menor elemento está na raiz do heap, que é o primeiro elemento do array
     return this.heap[1];
   }
+
   // Insere um novo elemento no heap
   insert(node) {
     // Adiciona o novo elemento ao final do heap
@@ -36,38 +37,40 @@ class MinHeap {
       currentIndex = Math.floor(currentIndex / 2);
     }
   }
-  // Remove e retorna o menor elemento do heap
+
+  // Pega e mostra o menor número do monte de números (heap)
   extractMin() {
-    // Substitui a raiz do heap (menor elemento) pelo último elemento do heap
+    // Pegamos o número do topo, que é o menor, e guardamos para mostrar depois
     const min = this.heap[1];
+    // Colocamos o número que estava no final do monte no lugar do número que pegamos
     this.heap[1] = this.heap.pop();
     let currentIndex = 1;
 
-    // Desce o novo elemento da raiz até restaurar a propriedade de heap
+    // Agora vamos arrumar o monte para manter a regra de que os números menores ficam no topo
     while (
-      this.heap[currentIndex * 2] !== undefined &&
-      (this.heap[currentIndex * 2] < this.heap[currentIndex] ||
-        this.heap[currentIndex * 2 + 1] < this.heap[currentIndex])
+      this.heap[currentIndex * 2] !== undefined && // Enquanto tiver filhos para comparar
+      (this.heap[currentIndex * 2] < this.heap[currentIndex] || // E o filho da esquerda for menor que o pai
+        this.heap[currentIndex * 2 + 1] < this.heap[currentIndex]) // Ou o filho da direita for menor que o pai
     ) {
       let smallerChildIndex;
-      // Determina qual dos filhos é o menor e armazena seu índice
+      // Descobre qual dos dois filhos é o menor
       if (
-        this.heap[currentIndex * 2 + 1] === undefined ||
-        this.heap[currentIndex * 2] < this.heap[currentIndex * 2 + 1]
+        this.heap[currentIndex * 2 + 1] === undefined || // Se não tiver filho da direita
+        this.heap[currentIndex * 2] < this.heap[currentIndex * 2 + 1] // Ou se o filho da esquerda for menor que o da direita
       ) {
-        smallerChildIndex = currentIndex * 2;
+        smallerChildIndex = currentIndex * 2; // O filho da esquerda é o menor
       } else {
-        smallerChildIndex = currentIndex * 2 + 1;
+        smallerChildIndex = currentIndex * 2 + 1; // O filho da direita é o menor
       }
-      // Troca o elemento atual com o menor de seus filhos
+      // Troca o número do pai pelo número menor dos filhos, como se eles estivessem competindo em um jogo e o menor ganhasse
       [this.heap[currentIndex], this.heap[smallerChildIndex]] = [
         this.heap[smallerChildIndex],
         this.heap[currentIndex],
       ];
-      // Move o índice para o menor filho para continuar o processo
+      // Move para o filho que ganhou para continuar o jogo na próxima linha da árvore
       currentIndex = smallerChildIndex;
     }
-    // Retorna o menor elemento que estava na raiz do heap
+    // Mostra o número que estava no topo e era o menor
     return min;
   }
   print() {
