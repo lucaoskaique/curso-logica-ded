@@ -1,0 +1,19 @@
+#number-grid {
+  display: grid;
+  grid-template-columns: repeat(25, 1fr); /* Ajuste para seu layout */
+  grid-gap: 5px;
+}
+
+.number-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  background-color: #f7f7f7;
+  cursor: pointer;
+  user-select: none;
+}
+
+.discarded {
+  background-color: #cccccc;
+}
